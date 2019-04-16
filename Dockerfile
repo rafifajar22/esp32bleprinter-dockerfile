@@ -4,7 +4,7 @@ LABEL Name=esp32bleprinter Version=latest
 EXPOSE 22/tcp
 
 RUN apt-get update && apt-get install -y  \
-    git wget make libncurses-dev flex bison gperf python python-pip python-setuptools python-serial python-cryptography python-future python-pyparsing python-pyelftools \
+    minicom vim nano git wget make libncurses-dev flex bison gperf python python-pip python-setuptools python-serial python-cryptography python-future python-pyparsing python-pyelftools \
     lib32ncurses5 \
     default-jre \
     libxext-dev \
@@ -28,16 +28,19 @@ RUN mkdir /root/esp32work/xtensa-esp32-elf
 
 ADD https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz /root/esp32work
 
-RUN tar -xzf ~/esp32work/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz -C ../root/esp32work/xtensa-esp32-elf \
-    && export PATH="$HOME/root/esp32work/xtensa-esp32-elf/bin:$PATH"
+RUN tar -xzf ~/esp32work/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz -C ../root/esp32work/
 
-ADD https://mirrors.tuna.tsinghua.edu.cn/eclipse/technology/epp/downloads/release/2019-03/R/eclipse-cpp-2019-03-R-linux-gtk-x86_64.tar.gz /root/esp32work/
+ENV PATH $HOME/root/esp32work/xtensa-esp32-elf/bin:$PATH
 
-RUN tar -xf ~/esp32work/eclipse-cpp-2019-03-R-linux-gtk-x86_64.tar.gz -C ../root \
+RUN wget https://mirrors.tuna.tsinghua.edu.cn/eclipse/technology/epp/downloads/release/2019-03/R/eclipse-cpp-2019-03-R-linux-gtk-x86_64.tar.gz -P /root/esp32work \
+    && tar -xf ~/esp32work/eclipse-cpp-2019-03-R-linux-gtk-x86_64.tar.gz -C ../root \
     && chmod -R a+x /root/eclipse \
     && ln -s /root/eclipse/eclipse /usr/local/bin/eclipse \
-    && chmod a+x /usr/local/bin/eclipse \
-    && export PATH="$HOME/root/eclipse:$PATH"
+    && chmod a+x /usr/local/bin/eclipse
+
+ENV PATH $HOME/root/eclipse:$PATH
+
+ENV IDF_PATH ~/esp32work/esp32bleprinter
 
 RUN rm ~/esp32work/gcc-arm-none-eabi-8-2018-q4-major-linux.tar.bz2 \
     && rm ~/esp32work/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz \
