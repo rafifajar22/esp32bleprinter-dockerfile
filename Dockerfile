@@ -4,7 +4,7 @@ LABEL Name=esp32bleprinter Version=latest
 EXPOSE 22/tcp
 
 RUN apt-get update && apt-get install -y  \
-    minicom vim nano git wget make libncurses-dev flex bison gperf python python-pip python-setuptools python-serial python-cryptography python-future python-pyparsing python-pyelftools \
+    openssh-server minicom vim nano git wget make libncurses-dev flex bison gperf python python-pip python-setuptools python-serial python-cryptography python-future python-pyparsing python-pyelftools \
     lib32ncurses5 \
     default-jre \
     libxext-dev \
@@ -46,5 +46,7 @@ RUN rm ~/esp32work/gcc-arm-none-eabi-8-2018-q4-major-linux.tar.bz2 \
     && rm ~/esp32work/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz \
     && rm ~/esp32work/JLink_Linux_x86_64.deb \
     && rm ~/esp32work/eclipse-cpp-2019-03-R-linux-gtk-x86_64.tar.gz
+
+RUN echo 'root:password' | chpasswd
 
 WORKDIR /root/esp32work
