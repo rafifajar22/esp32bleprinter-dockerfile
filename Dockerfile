@@ -4,12 +4,10 @@ LABEL Name=esp32bleprinter Version=latest
 EXPOSE 22/tcp
 
 RUN apt-get update && apt-get install -y  \
-    openssh-server minicom vim nano git wget make libncurses-dev flex bison gperf python python-pip python-setuptools python-serial python-cryptography python-future python-pyparsing python-pyelftools \
-    lib32ncurses5 \
+    unzip openssh-server minicom vim nano git wget make flex bison gperf \
+    libncurses-dev lib32ncurses5 libxext-dev libxrender-dev libxtst-dev \
+    python python-pip python-setuptools python-serial python-cryptography python-future python-pyparsing python-pyelftools \
     default-jre \
-    libxext-dev \
-    libxrender-dev \
-    libxtst-dev \
     libgtk2.0-0 libcanberra-gtk-module \
     g++ libboost-all-dev build-essential gdb
 
