@@ -12,9 +12,9 @@ git clone https://github.com/rafifajar22/esp32bleprinter-dockerfile
 after cloning repo, you can build Dockerfile, open your directory where the dockerfile is stored, and run
 
 ```bash
-docker build -t tagname:version
+docker build -t tagname:version <Dockerfile location>
 ```
-you can edit tagname and version as you need
+you can edit tagname and version as you need, and you can use "." for dockerfile location if you run in dockerfile directory
 
 ## Running Docker Images
 
