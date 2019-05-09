@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y  \
     python python-pip python-setuptools python-serial python-cryptography python-future python-pyparsing python-pyelftools \
     default-jre \
     libgtk2.0-0 libcanberra-gtk-module \
-    g++ libboost-all-dev build-essential gdb
+    g++ libboost-all-dev build-essential gdb \
+    libswt-gtk-4-jni libswt-gtk-4-java
 
 RUN mkdir /root/esp32work \
     && mkdir /root/esp32work/eclipse-workspace
