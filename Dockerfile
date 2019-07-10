@@ -20,7 +20,7 @@ ADD https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2018q4/gcc-arm-no
 RUN tar xf ~/esp32work/gcc-arm-none-eabi-8-2018-q4-major-linux.tar.bz2 -C ../opt/ \
     && chmod -R -w /opt/gcc-arm-none-eabi-8-2018-q4-major
 
-RUN wget --post-data="accept_license_agreement=accepted&non_eu_denied_list=confirmed" https://www.segger.com/downloads/jlink/JLink_Linux_x86_64.deb -P /root/esp32work \
+RUN wget --post-data="accept_license_agreement=accepted&non_emb_ctr=confirmed" https://www.segger.com/downloads/jlink/JLink_Linux_x86_64.deb -P /root/esp32work \
     && dpkg -i /root/esp32work/JLink_Linux_x86_64.deb
 
 RUN mkdir /root/esp32work/xtensa-esp32-elf
